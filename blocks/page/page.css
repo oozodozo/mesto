@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 
-@media screen and (max-width: 918px) {
+@media screen and (max-width: 927px) {
   .page {
     padding: 28px 0 36px;
     max-width: 100%;

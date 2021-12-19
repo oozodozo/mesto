@@ -1,0 +1,14 @@
+.content {
+  max-width: 100%;
+  margin: 40px 0 66px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 927px) {
+  .content {
+    padding: 0 19px;
+    margin: 42px 0 48px;
+  }
+}

@@ -4,7 +4,7 @@
   color: #ffffff;
 }
 
-@media screen and (max-width: 927px) {
+@media screen and (max-width: 917px) {
   .profile {
     flex-direction: column;
     justify-content: center;

@@ -1,0 +1,16 @@
+.element__like-button {
+  background-image: url(../../../images/heart_disabled.svg);
+  background-size: cover;
+  background-color: transparent;
+  width: 22px;
+  height: 19px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  margin-right: 5px;
+}
+
+.element__like-button:active {
+  background-image: url(../../../images/heart__active.svg);
+}

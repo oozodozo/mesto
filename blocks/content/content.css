@@ -1,14 +1,14 @@
 .content {
   max-width: 100%;
-  margin: 40px 0 66px;
+  margin-top: 40px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-@media screen and (max-width: 927px) {
+@media screen and (max-width: 917px) {
   .content {
     padding: 0 19px;
-    margin: 42px 0 48px;
+    margin-top: 42px;
   }
 }

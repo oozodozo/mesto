@@ -1,17 +1,15 @@
-.profile__description {
-  font-weight: 400;
+.footer__copyright {
   margin: 0;
   padding: 0;
-  margin-top: 7px;
+  font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  color: #545454;
 }
 
 @media screen and (max-width: 917px) {
-  .profile__description {
+  .footer__copyright {
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
-    margin-top: 6px;
   }
 }

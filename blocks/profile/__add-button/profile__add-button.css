@@ -10,7 +10,7 @@
   margin-left: auto;
 }
 
-@media screen and (max-width: 927px) {
+@media screen and (max-width: 917px) {
   .profile__add-button {
     background-image: url(../../../images/profile_add_button_big.svg);
     width: 282px;

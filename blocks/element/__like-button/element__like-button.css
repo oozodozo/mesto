@@ -22,4 +22,5 @@
 
 .element__like-button:active {
   background-image: url(../../../images/heart__active.svg);
+  opacity: 1;
 }

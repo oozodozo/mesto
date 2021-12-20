@@ -1,0 +1,22 @@
+.popup__button-reset {
+  background-image: url(../../../images/popup_close_button.svg);
+  background-size: cover;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+}
+
+@media screen and (max-width: 917px) {
+  .popup__button-reset {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36px;
+  }
+}

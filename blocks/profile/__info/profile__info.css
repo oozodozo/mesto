@@ -1,16 +1,25 @@
 .profile__info {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: (-webkit-max-content)[2];
+  -ms-grid-columns: (max-content)[2];
+  grid-template-columns: repeat(2, -webkit-max-content);
   grid-template-columns: repeat(2, max-content);
   row-gap: 9px;
   max-width: 336px;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-left: 30px;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
   align-items: baseline;
 }
 
 @media screen and (max-width: 917px) {
   .profile__info {
     max-width: 282px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     row-gap: 7px;
     margin: 26px 0 32px;

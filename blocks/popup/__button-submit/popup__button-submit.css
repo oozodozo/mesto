@@ -9,6 +9,7 @@
   line-height: 22px;
   text-align: center;
   padding: 14px 124px 18px 125px;
+  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
 

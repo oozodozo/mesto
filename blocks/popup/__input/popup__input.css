@@ -6,6 +6,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   outline: none;
 }

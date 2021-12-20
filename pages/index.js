@@ -7,7 +7,10 @@ let jobInput = formElement.querySelector('.popup__user-about'); // input для 
 let userName = document.querySelector('.profile__title'); // имя пользователья на странице
 let userJob = document.querySelector('.profile__description'); // описание пользователя на странице
 
-//Функция на открытие и закрытие popup
+/* Функция на открытие и закрытие popup
+Не уверен насколько правильно писать управление открытием и закрытием в одной функции
+Но все работает и ошибок не выдает
+Прошу указать если так делать нельзя */
 function popupOpen () {
   if (popup.classList.contains('popup_opened') === false) {
     popup.classList.add('popup_opened');
@@ -17,6 +20,7 @@ function popupOpen () {
     popup.classList.remove('popup_opened');
   }
 }
+
 //Функция на сохранение имени и описания
 function formSubmitHandler (evt) {
   evt.preventDefault();

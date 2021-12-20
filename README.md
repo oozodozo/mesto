@@ -52,7 +52,7 @@
 ## Ссылка:
 
 
-[**Сайт MESTO**]()
+[**Сайт MESTO**](https://oozodozo.github.io/mesto/)
 
 ---
 

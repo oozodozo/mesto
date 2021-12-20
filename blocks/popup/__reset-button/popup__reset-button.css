@@ -1,4 +1,4 @@
-.popup__button-reset {
+.popup__reset-button {
   background-image: url(../../../images/popup_close_button.svg);
   background-size: cover;
   background-color: transparent;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 917px) {
-  .popup__button-reset {
+  .popup__reset-button {
     width: 20px;
     height: 20px;
     right: 0;

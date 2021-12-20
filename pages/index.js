@@ -1,6 +1,6 @@
 let popup = document.querySelector('.popup'); //popup
 let profileEditButton = document.querySelector('.profile__edit-button'); // кнопка вызова popup
-let popupReset = document.querySelector('.popup__button-reset'); // кнопка закрытия popup
+let popupReset = document.querySelector('.popup__reset-button'); // кнопка закрытия popup
 let formElement = document.querySelector('.popup__form'); // форма редактирование имени
 let nameImput = formElement.querySelector('.popup__user-name'); // input для ввода имени
 let jobInput = formElement.querySelector('.popup__user-about'); // input для описание пользователя

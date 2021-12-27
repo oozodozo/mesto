@@ -7,18 +7,16 @@ let jobInput = formElement.querySelector('.popup__user-about'); // input для 
 let userName = document.querySelector('.profile__title'); // имя пользователья на странице
 let userJob = document.querySelector('.profile__description'); // описание пользователя на странице
 
-/* Функция на открытие и закрытие popup
-Не уверен насколько правильно писать управление открытием и закрытием в одной функции
-Но все работает и ошибок не выдает
-Прошу указать если так делать нельзя */
-function popupOpen () {
-  if (popup.classList.contains('popup_opened') === false) {
-    popup.classList.add('popup_opened');
+/* После вашего коментария пересмотрел необходимость вообще использовать if и else в данной функции.
+   За счет "toggle" отпадает необходимость усложнять функцию конструкциями if и else. В данной работе
+   вызов popup осущетвлен только через кнопку редактирования, поэтому нет необходимости заставлять функцию
+   проверять есть ли необходимый класс или нет дважды, потому что toogle делает это сам. */
+
+// Функция на откртие и закрытие popup
+function popupToggle () {
+    popup.classList.toggle('popup_opened');
     nameImput.value = userName.textContent;
     jobInput.value = userJob.textContent;
-  } else {
-    popup.classList.remove('popup_opened');
-  }
 }
 
 //Функция на сохранение имени и описания
@@ -26,8 +24,25 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   userName.textContent = nameImput.value;
   userJob.textContent = jobInput.value;
+  popupToggle();
 }
 
-profileEditButton.addEventListener('click', popupOpen);
-popupReset.addEventListener('click', popupOpen);
-formElement.addEventListener('submit', formSubmitHandler);
+profileEditButton.addEventListener('click', popupToggle); // Кнопка открытия popup
+popupReset.addEventListener('click', popupToggle); // Кнопка закрытия popup
+formElement.addEventListener('submit', formSubmitHandler); // Кнопка сохранения информации о себе
+
+// Добавил возможность закрывать popup по клику на фон вне формы popup
+popup.addEventListener('click', function(event) {
+  if (event.target === popup) {
+    popup.classList.remove('popup_opened');
+  }
+});
+
+// Добавил возможность закрывать popup по нажатию клавиши Escape
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'Escape') {
+    popup.classList.remove('popup_opened');
+  }
+});
+
+

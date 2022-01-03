@@ -137,4 +137,17 @@ function deleteElement(evt) {
     cardDelete.remove();
   }
 }
+
+// Повесил слушателя на весь блок elements для отслеживания всех кнопок delete
 elements.addEventListener('click', deleteElement);
+
+// Функция постановки/удаления лайка
+function likeElement(evt) {
+  if (evt.target.matches('.element__like-button')) {
+    evt.target.classList.toggle('element__like-button_active');
+  }
+}
+
+// Повесил слушателя на весь блок elements что бы отслеживать все лайки
+elements.addEventListener('click', likeElement);
+

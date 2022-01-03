@@ -130,3 +130,11 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+// Функция удаления карточки
+function deleteElement(evt) {
+  if (evt.target.matches('.element__trash-button')) {
+    const cardDelete = evt.target.closest('.element');
+    cardDelete.remove();
+  }
+}
+elements.addEventListener('click', deleteElement);

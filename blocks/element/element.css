@@ -2,4 +2,8 @@
   background-color: #fff;
   border-radius: 10px;
   position: relative;
+  display: grid;
+  grid-template-rows: 282px 1fr;
+  grid-template-columns: 282px;
+  row-gap: 25px;
 }

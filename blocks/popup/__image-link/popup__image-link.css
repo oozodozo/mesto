@@ -1,0 +1,9 @@
+.popup__image-link {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 917px) {
+  .popup__image-link {
+    margin-bottom: 45px;
+  }
+}

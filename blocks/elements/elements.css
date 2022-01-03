@@ -2,9 +2,10 @@
   margin-top: 50px;
   display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(282px, max-content));
+  /*
   grid-template-rows: repeat(auto-fit, minmax(-webkit-min-content, -webkit-max-content));
-  grid-template-rows: repeat(auto-fit, minmax(min-content, max-content));
+  grid-template-rows: repeat(auto-fit, minmax(min-content, max-content)); */
   -webkit-column-gap: 17px;
   -moz-column-gap: 17px;
   column-gap: 17px;

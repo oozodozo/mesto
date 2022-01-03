@@ -1,0 +1,9 @@
+.popup__place-title {
+  margin-bottom: 29.74px;
+}
+
+@media screen and (max-width: 917px) {
+  .popup__place-title {
+    margin-bottom: 30px;
+  }
+}

@@ -18,7 +18,7 @@ const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с 
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 
-
+// Массив первых 6-ти карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -46,7 +46,7 @@ const initialCards = [
   }
 ];
 
-// Функция добавления карточки
+// Функция формирования карточки
 function addElement (link, name) {
   const elementCard = elementTemplate.cloneNode(true);
   elementCard.querySelector('.element__image').src = link;
@@ -179,4 +179,3 @@ function popupBigImage(evt) {
 }
 // Повесил слушателя на весь блок elements что бы открывать popup по клику на картинку
 elements.addEventListener('click', popupBigImage);
-

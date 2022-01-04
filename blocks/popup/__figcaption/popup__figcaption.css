@@ -1,0 +1,8 @@
+.popup__figcaption {
+  color: #fff;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+  padding-top: 10px;
+  align-self: flex-start;
+}

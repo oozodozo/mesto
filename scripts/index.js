@@ -6,16 +6,19 @@ let nameImput = formElement.querySelector('.popup__user-name'); // input для 
 let jobInput = formElement.querySelector('.popup__user-about'); // input для описания пользователя
 let userName = document.querySelector('.profile__title'); // имя пользователя на странице
 let userJob = document.querySelector('.profile__description'); // описание пользователя на странице
-
 const popupAddElement = document.querySelector('.popup_add-element'); // popup добавление карточки
 const addElementButton = document.querySelector('.profile__add-button'); // кнопка открытия popup с добавлением карточки
 const popupAddElementReset = document.querySelector('.popup__reset-add-button'); //  кнопка закрытия popupAdd
 const popupAddElementSubmit = document.querySelector('.popup__button-element-submit'); // кнопка сохранения
 const popupAddTitleImput = document.querySelector('.popup__place-title'); // поле ввода названия фотографии
 const popupAddImageLink = document.querySelector('.popup__image-link'); // поле ввода ссылки на фотографию
+const elementTemplate = document.querySelector('#template-element').content; // Элемент template для карточек
+const elements = document.querySelector('.elements'); // Блок elements
+const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
+const zoomImage = document.querySelector('.popup__image'); // Большая фотография
+const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 
-const elementTemplate = document.querySelector('#template-element').content;
-const elements = document.querySelector('.elements');
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -150,4 +153,30 @@ function likeElement(evt) {
 
 // Повесил слушателя на весь блок elements что бы отслеживать все лайки
 elements.addEventListener('click', likeElement);
+
+// Функция открытия popup с большой фотографией
+function popupBigImage(evt) {
+  if (evt.target.matches('.element__image')) {
+    popupZoomImage.classList.add('popup_opened');
+    const imageZoom = evt.target;
+    const figcaption = imageZoom.nextElementSibling;
+    zoomImage.src = imageZoom.src;
+    zoomImage.alt = figcaption.textContent;
+    imageFigcaption.textContent = figcaption.textContent;
+  }
+  // Повесил слушателя для закрытия popup через кнопку reset и по клику на overlay
+  popupZoomImage.addEventListener('click', function(evt) {
+    if (evt.target.matches('.popup__reset-button') || evt.target.matches('.popup_zoom-image')) {
+      popupZoomImage.classList.remove('popup_opened');
+    }
+  });
+  // Повесил слушателя что бы закрывать popup по нажатию esc
+  document.addEventListener('keydown', function(event) {
+    if (event.code === 'Escape') {
+      popupZoomImage.classList.remove('popup_opened');
+    }
+  });
+}
+// Повесил слушателя на весь блок elements что бы открывать popup по клику на картинку
+elements.addEventListener('click', popupBigImage);
 

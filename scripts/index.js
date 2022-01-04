@@ -18,42 +18,57 @@ const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с 
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 
-// Массив первых 6-ти карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+// Функция открытия popup
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+// функция закрытия popup
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
+}
 
 // Функция формирования карточки
 function addElement (link, name) {
   const elementCard = elementTemplate.cloneNode(true);
-  elementCard.querySelector('.element__image').src = link;
-  elementCard.querySelector('.element__image').alt = name;
+  const elementImage = elementCard.querySelector('.element__image');
+  elementImage.src = link;
+  elementImage.alt = name;
   elementCard.querySelector('.element__title').textContent = name;
+
+  // Открытие большой фотографии
+  elementImage.addEventListener('click', function() {
+    openBigImage(elementImage);
+  })
+
+  // Постановка или удаление лайка
+  const likeElement = elementCard.querySelector('.element__like-button');
+  likeElement.addEventListener('click', function() {
+    likeElement.classList.toggle('element__like-button_active');
+  });
+
+  // Удаление карточки по нажатию на иконку
+  const deleteElement = elementCard.querySelector('.element__trash-button');
+  deleteElement.addEventListener('click', function() {
+    const deleteCard = deleteElement.closest('.element');
+    deleteCard.remove();
+  });
+
   return elementCard;
 }
+
+// Функция открытия popup с большой фотографией
+function openBigImage(item) {
+  openPopup(popupZoomImage);
+  zoomImage.src = item.src;
+  zoomImage.alt = item.alt;
+  imageFigcaption.textContent = item.alt;
+  const closedButton = popupZoomImage.querySelector('.popup__reset-button');
+  closedButton.addEventListener('click', function() {
+    closePopup(popupZoomImage);
+  });
+}
+
 // Функция добавления карточки на страницу
 function insertElement(element) {
   const elementCard = addElement(element.link, element.name);
@@ -62,120 +77,61 @@ function insertElement(element) {
 
 // Загрузка 6 карточек из массива
 initialCards.forEach(function (item) {
-  const elementPhotoCard = addElement(item.link, item.name);
-  elements.prepend(elementPhotoCard);
+  insertElement(item);
 });
 
-// Открытие/закрытие popupAddElement
-function popupAddToggle () {
-  popupAddElement.classList.toggle('popup_opened');
+// Функция получения текста imput в форме редактирования
+function inputPopupEdit() {
+  nameImput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
+}
+
+//Функция на сохранение имени и описания
+function handlePopupEditForm(evt) {
+  evt.preventDefault();
+  userName.textContent = nameImput.value;
+  userJob.textContent = jobInput.value;
+  closePopup(popupEdit);
+}
+
+// Функция очистки полей ввода в popup добавления карточки
+function clearPopupAddImput() {
   popupAddImageLink.value = '';
   popupAddTitleImput.value = '';
 }
 
+// Кнопка открытия popup редактирования профиля
+profileEditButton.addEventListener('click', function() {
+  openPopup(popupEdit);
+  inputPopupEdit();
+});
+
+// Кнопка закрытия popup редактирования профиля
+popupEditReset.addEventListener('click', function() {
+  closePopup(popupEdit);
+});
+
+// Кнопка сохранения информации о себе
+formElement.addEventListener('submit', handlePopupEditForm);
+
+// Кнопка открытия popupAddElement
+addElementButton.addEventListener('click', function() {
+  openPopup(popupAddElement);
+  clearPopupAddImput();
+});
+
+// Кнопка закрытия popupAddElement
+popupAddElementReset.addEventListener('click', function() {
+  closePopup(popupAddElement);
+});
+
 // Добавление карточки из popup
-popupAddElementSubmit.addEventListener('click', function(evt){
+popupAddElementSubmit.addEventListener('click', function(evt) {
   evt.preventDefault();
   const createUserElement = {
     link: popupAddImageLink.value,
     name: popupAddTitleImput.value
   }
   insertElement(createUserElement);
-  popupAddToggle();
+  closePopup(popupAddElement);
 });
-
-// Функция на открытие и закрытие popupEdit
-function popupEditToggle () {
-  popupEdit.classList.toggle('popup_opened');
-  nameImput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
-}
-
-//Функция на сохранение имени и описания
-function formSubmitHandler (evt) {
-  evt.preventDefault();
-  userName.textContent = nameImput.value;
-  userJob.textContent = jobInput.value;
-  popupEditToggle();
-}
-
-profileEditButton.addEventListener('click', popupEditToggle); // Кнопка открытия popup
-popupEditReset.addEventListener('click', popupEditToggle); // Кнопка закрытия popup
-formElement.addEventListener('submit', formSubmitHandler); // Кнопка сохранения информации о себе
-addElementButton.addEventListener('click', popupAddToggle); // Кнопка открытия popupAddElement
-popupAddElementReset.addEventListener('click', popupAddToggle); // Кнопка закрытия popupAddElement
-
-// Добавил возможность закрывать popupEdit по клику на фон вне формы popup
-popupEdit.addEventListener('click', function(event) {
-  if (event.target === popupEdit) {
-    popupEdit.classList.remove('popup_opened');
-  }
-});
-
-// Добавил возможность закрывать popupEdit по нажатию клавиши Escape
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'Escape') {
-    popupEdit.classList.remove('popup_opened');
-  }
-});
-
-// Добавил возможность закрывать popupEdit по клику на фон вне формы popup
-popupAddElement.addEventListener('click', function(event) {
-  if (event.target === popupAddElement) {
-    popupAddElement.classList.remove('popup_opened');
-  }
-});
-
-// Добавил возможность закрывать popupAddElement по нажатию клавиши Escape
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'Escape') {
-    popupAddElement.classList.remove('popup_opened');
-  }
-});
-
-// Функция удаления карточки
-function deleteElement(evt) {
-  if (evt.target.matches('.element__trash-button')) {
-    const cardDelete = evt.target.closest('.element');
-    cardDelete.remove();
-  }
-}
-
-// Повесил слушателя на весь блок elements для отслеживания всех кнопок delete
-elements.addEventListener('click', deleteElement);
-
-// Функция постановки/удаления лайка
-function likeElement(evt) {
-  if (evt.target.matches('.element__like-button')) {
-    evt.target.classList.toggle('element__like-button_active');
-  }
-}
-
-// Повесил слушателя на весь блок elements что бы отслеживать все лайки
-elements.addEventListener('click', likeElement);
-
-// Функция открытия popup с большой фотографией
-function popupBigImage(evt) {
-  if (evt.target.matches('.element__image')) {
-    popupZoomImage.classList.add('popup_opened');
-    const imageZoom = evt.target;
-    const figcaption = imageZoom.nextElementSibling;
-    zoomImage.src = imageZoom.src;
-    zoomImage.alt = figcaption.textContent;
-    imageFigcaption.textContent = figcaption.textContent;
-  }
-  // Повесил слушателя для закрытия popup через кнопку reset и по клику на overlay
-  popupZoomImage.addEventListener('click', function(evt) {
-    if (evt.target.matches('.popup__reset-button') || evt.target.matches('.popup_zoom-image')) {
-      popupZoomImage.classList.remove('popup_opened');
-    }
-  });
-  // Повесил слушателя что бы закрывать popup по нажатию esc
-  document.addEventListener('keydown', function(event) {
-    if (event.code === 'Escape') {
-      popupZoomImage.classList.remove('popup_opened');
-    }
-  });
-}
-// Повесил слушателя на весь блок elements что бы открывать popup по клику на картинку
-elements.addEventListener('click', popupBigImage);

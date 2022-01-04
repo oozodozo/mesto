@@ -49,11 +49,13 @@
     </div>
     <!-- popup с большой фотографией -->
     <div class="popup popup_zoom-image">
-      <figure class="popup__figure">
-        <img class="popup__image" src="" alt="">
-        <figcaption class="popup__figcaption"></figcaption>
+      <div class="popup__figure-container">
+        <figure class="popup__figure">
+          <img class="popup__image" src="#" alt="">
+          <figcaption class="popup__figcaption"></figcaption>
+        </figure>
         <button type="reset" class="popup__reset-button page__button"></button>
-      </figure>
+      </div>
     </div>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
@@ -62,7 +64,7 @@
   <!-- template карточки с фотографией -->
   <template id="template-element">
     <article class="element">
-      <img class="element__image" src="" alt="">
+      <img class="element__image" src="#" alt="">
       <div class="element__description">
         <h2 class="element__title"></h2>
         <button type="button" class="element__like-button"></button>

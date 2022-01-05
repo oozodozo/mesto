@@ -17,6 +17,7 @@ const elements = document.querySelector('.elements'); // Блок elements
 const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
+const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
 
 // Функция открытия popup
 function openPopup(popup) {
@@ -38,7 +39,7 @@ function addElement (link, name) {
 
   // Открытие большой фотографии
   elementImage.addEventListener('click', function() {
-    openBigImage(elementImage);
+    openBigImage(link, name);
   })
 
   // Постановка или удаление лайка
@@ -58,15 +59,11 @@ function addElement (link, name) {
 }
 
 // Функция открытия popup с большой фотографией
-function openBigImage(item) {
+function openBigImage(link, name) {
   openPopup(popupZoomImage);
-  zoomImage.src = item.src;
-  zoomImage.alt = item.alt;
-  imageFigcaption.textContent = item.alt;
-  const closedButton = popupZoomImage.querySelector('.popup__reset-button');
-  closedButton.addEventListener('click', function() {
-    closePopup(popupZoomImage);
-  });
+  zoomImage.src = link;
+  zoomImage.alt = name;
+  imageFigcaption.textContent = name;
 }
 
 // Функция добавления карточки на страницу
@@ -80,8 +77,8 @@ initialCards.forEach(function (item) {
   insertElement(item);
 });
 
-// Функция получения текста imput в форме редактирования
-function inputPopupEdit() {
+// Функция получения текста input в форме редактирования
+function receivingInputsPopupEdit() {
   nameImput.value = userName.textContent;
   jobInput.value = userJob.textContent;
 }
@@ -95,15 +92,20 @@ function handlePopupEditForm(evt) {
 }
 
 // Функция очистки полей ввода в popup добавления карточки
-function clearPopupAddImput() {
+function resetInputsPopupAdd() {
   popupAddImageLink.value = '';
   popupAddTitleImput.value = '';
 }
 
+// Кнопка закрытия popupZoomImage
+closedButton.addEventListener('click', function() {
+  closePopup(popupZoomImage);
+});
+
 // Кнопка открытия popup редактирования профиля
 profileEditButton.addEventListener('click', function() {
   openPopup(popupEdit);
-  inputPopupEdit();
+  receivingInputsPopupEdit();
 });
 
 // Кнопка закрытия popup редактирования профиля
@@ -117,7 +119,7 @@ formElement.addEventListener('submit', handlePopupEditForm);
 // Кнопка открытия popupAddElement
 addElementButton.addEventListener('click', function() {
   openPopup(popupAddElement);
-  clearPopupAddImput();
+  resetInputsPopupAdd();
 });
 
 // Кнопка закрытия popupAddElement
@@ -125,7 +127,7 @@ popupAddElementReset.addEventListener('click', function() {
   closePopup(popupAddElement);
 });
 
-// Добавление карточки из popup
+// Добавление карточки внутри popupAddElement
 popupAddElementSubmit.addEventListener('click', function(evt) {
   evt.preventDefault();
   const createUserElement = {

@@ -20,7 +20,7 @@
 
 ## Написан на:
 
-![Логотип](https://i.ibb.co/6PKm1nb/javascript-html-css3-120px.png)
+![Логотип](https://i.ibb.co/5M9WzQ7/icon-120px-js-html-css.png)
 
 ---
 

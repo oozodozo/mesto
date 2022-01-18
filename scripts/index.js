@@ -23,6 +23,7 @@ const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // К
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown',closePopupKeydownEsc); // Слушатель на закрытие по ESC
+  document.addEventListener('click', closePopupClickOverlay); // Слушатель на закрытие по overlay
 }
 
 // функция закрытия popup
@@ -30,11 +31,20 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   // Снимаем слушателя, так как он не нужен без открытого popup
   document.removeEventListener('keydown',closePopupKeydownEsc);
+  document.removeEventListener('click', closePopupClickOverlay);
 }
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
   if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+// Функция закрытия popup по клику на overlay
+function closePopupClickOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
@@ -148,4 +158,3 @@ popupAddElementSubmit.addEventListener('click', function(evt) {
   insertElement(createUserElement);
   closePopup(popupAddElement);
 });
-

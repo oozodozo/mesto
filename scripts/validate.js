@@ -49,7 +49,7 @@ const enableValidation = ({formSelector, ...item}) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-    // Получим массив всех fielset на странице и будем отслеживать их
+    // Получим массив всех fieldset на странице и будем отслеживать их
     const fieldsetList = Array.from(document.querySelectorAll('.popup__fieldset'));
     fieldsetList.forEach(function (fieldset) {
       setEventListeners(fieldset, item);

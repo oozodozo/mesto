@@ -18,8 +18,6 @@ const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с 
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
-<<<<<<< HEAD
-=======
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
@@ -36,7 +34,6 @@ function closePopupClickOverlay(evt) {
     closePopup(openedPopup);
   }
 }
->>>>>>> develop
 
 // Функция открытия popup
 function openPopup(popup) {
@@ -104,11 +101,8 @@ initialCards.forEach(function (item) {
 
 // Функция получения текста input в форме редактирования
 function receivingInputsPopupEdit() {
-<<<<<<< HEAD
-  nameImput.value = userName.textContent;
-=======
   nameInput.value = userName.textContent;
->>>>>>> develop
+  nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
 }
 
@@ -145,10 +139,7 @@ closedButton.addEventListener('click', function() {
 // Кнопка открытия popup редактирования профиля
 profileEditButton.addEventListener('click', function() {
   openPopup(popupEdit);
-<<<<<<< HEAD
-=======
   disabledButtonSubmit(popupEdit);
->>>>>>> develop
   receivingInputsPopupEdit();
 });
 
@@ -163,10 +154,7 @@ userEditForm.addEventListener('submit', handlePopupEditForm);
 // Кнопка открытия popupAddElement
 addElementButton.addEventListener('click', function() {
   openPopup(popupAddElement);
-<<<<<<< HEAD
-=======
   disabledButtonSubmit(popupAddElement);
->>>>>>> develop
   resetInputsPopupAdd();
 });
 

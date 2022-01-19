@@ -2,8 +2,11 @@
   background-color: #fff;
   border-radius: 10px;
   position: relative;
+  display: -ms-grid;
   display: grid;
+  -ms-grid-rows: 282px 25px 1fr;
   grid-template-rows: 282px 1fr;
+  -ms-grid-columns: 282px;
   grid-template-columns: 282px;
   row-gap: 25px;
 }

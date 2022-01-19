@@ -1,9 +1,4 @@
 .popup__user-about {
-  margin-bottom: 48px;
+  margin-top: 13px;
 }
 
-@media screen and (max-width: 917px) {
-  .popup__user-about {
-    margin-bottom: 45px;
-  }
-}

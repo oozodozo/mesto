@@ -52,7 +52,7 @@ function closePopup(popup) {
 }
 
 // Функция формирования карточки
-function addElement (link, name) {
+function createCard (link, name) {
   const elementCard = elementTemplate.cloneNode(true);
   const elementImage = elementCard.querySelector('.element__image');
   elementImage.src = link;
@@ -90,7 +90,7 @@ function openBigImage(link, name) {
 
 // Функция добавления карточки на страницу
 function insertElement(element) {
-  const elementCard = addElement(element.link, element.name);
+  const elementCard = createCard(element.link, element.name);
   elements.prepend(elementCard);
 }
 
@@ -116,8 +116,8 @@ function handlePopupEditForm(evt) {
 
 // Функция очистки полей ввода в popup добавления карточки
 function resetInputsPopupAdd() {
-  popupAddImageLink.value = '';
-  popupAddTitleInput.value = '';
+  const addForm = popupAddElement.querySelector('.popup__form');
+  addForm.reset();
 }
 
 // Кнопка закрытия popupZoomImage
@@ -136,10 +136,26 @@ closedButton.addEventListener('click', function() {
   closePopup(popupZoomImage);
 });
 
+// Функция обнуления ошибок при повторном открытии popup
+function resetError(popup) {
+  const inputElements = Array.from(popup.querySelectorAll('.popup__input'));
+  const errorElements = Array.from(popup.querySelectorAll('.popup__error'));
+  // Удаляем подчеркивание ошибки
+  inputElements.forEach((inputElement) => {
+    inputElement.classList.remove('popup__input_type_error');
+  });
+  // Удаляем активный класс ошибки и ее содержание
+  errorElements.forEach((errorElement) => {
+    errorElement.classList.remove('popup__error_visible');
+    errorElement.textContent = '';
+  });
+}
+
 // Кнопка открытия popup редактирования профиля
 profileEditButton.addEventListener('click', function() {
   openPopup(popupEdit);
   disabledButtonSubmit(popupEdit);
+  resetError(popupEdit)
   receivingInputsPopupEdit();
 });
 
@@ -155,6 +171,7 @@ userEditForm.addEventListener('submit', handlePopupEditForm);
 addElementButton.addEventListener('click', function() {
   openPopup(popupAddElement);
   disabledButtonSubmit(popupAddElement);
+  resetError(popupAddElement);
   resetInputsPopupAdd();
 });
 
@@ -166,10 +183,10 @@ popupAddElementReset.addEventListener('click', function() {
 // Добавление карточки внутри popupAddElement
 popupAddElementSubmit.addEventListener('click', function(evt) {
   evt.preventDefault();
-  const createUserElement = {
+  const cardData = {
     link: popupAddImageLink.value,
     name: popupAddTitleInput.value
   }
-  insertElement(createUserElement);
+  insertElement(cardData);
   closePopup(popupAddElement);
 });

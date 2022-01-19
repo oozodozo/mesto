@@ -26,11 +26,15 @@
     <!-- popup редактирования профиля -->
     <div class="popup popup_edit-profile">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" class="popup__input popup__user-name">
-          <input type="text" class="popup__input popup__user-about">
-          <button type="submit" class="popup__button-submit">Сохранить</button>
+          <fieldset class="popup__fieldset">
+            <input type="text" id="name" class="popup__input popup__user-name" minlength="2" maxlength="40" required>
+            <span class="popup__error name-error"></span>
+            <input type="text" id="about" class="popup__input popup__user-about" minlength="2" maxlength="200" required>
+            <span class="popup__error about-error"></span>
+            <button type="submit" class="popup__button-submit">Сохранить</button>
+          </fieldset>
         </form>
         <button type="reset" class="popup__reset-button popup__edit-reset-button page__button"></button>
       </div>
@@ -38,11 +42,15 @@
     <!-- popup добавления карточки -->
     <div class="popup popup_add-element">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <input type="text" class="popup__input popup__place-title" placeholder="Название">
-          <input type="text" class="popup__input popup__image-link" placeholder="Ссылка на картинку">
-          <button type="submit" class="popup__button-submit popup__button-element-submit">Создать</button>
+          <fieldset class="popup__fieldset">
+            <input type="text" id="place-title" class="popup__input popup__place-title" placeholder="Название" minlength="2" maxlength="30" required>
+            <span class="popup__error place-title-error"></span>
+            <input type="url" id="image-link" class="popup__input popup__image-link" placeholder="Ссылка на картинку" required>
+            <span class="popup__error image-link-error"></span>
+            <button type="submit" class="popup__button-submit popup__button-element-submit">Создать</button>
+          </fieldset>
         </form>
         <button type="reset" class="popup__reset-button popup__reset-add-button page__button"></button>
       </div>
@@ -73,6 +81,10 @@
     </article>
   </template>
   <script src="./scripts/cards.js"></script>
+<<<<<<< HEAD
+=======
+  <script src="./scripts/validate.js"></script>
+>>>>>>> develop
   <script src="./scripts/index.js"></script>
 </body>
 </html>

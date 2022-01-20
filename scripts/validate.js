@@ -1,4 +1,4 @@
-const objValidation = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button-submit',
@@ -86,4 +86,4 @@ const toggleButtonState = (inputList, buttonElement, {inactiveButtonClass}) => {
 };
 
 // Вызов функции включения валидации на странице
-enableValidation(objValidation);
+enableValidation(validationConfig);

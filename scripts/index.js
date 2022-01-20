@@ -18,6 +18,7 @@ const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с 
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
+const formAddCard = popupAddElement.querySelector('.popup__form');
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
@@ -101,7 +102,6 @@ initialCards.forEach(function (item) {
 // Функция получения текста input в форме редактирования
 function receivingInputsPopupEdit() {
   nameInput.value = userName.textContent;
-  nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
 }
 
@@ -113,42 +113,39 @@ function handlePopupEditForm(evt) {
   closePopup(popupEdit);
 }
 
-// Функция очистки полей ввода в popup добавления карточки
-function resetInputsPopupAdd() {
-  const addForm = popupAddElement.querySelector('.popup__form');
-  addForm.reset();
-}
-
 // Кнопка закрытия popupZoomImage
 closedButton.addEventListener('click', function() {
   closePopup(popupZoomImage);
 });
 
-// Функция деактивации кнопки Отправить при повторном открытии popup
+// Функция деактивации кнопки отправить при повторном открытии popup
 function disabledButtonSubmit(popup) {
-  const buttonSubmit = popup.querySelector('.popup__button-submit');
-  buttonSubmit.classList.add('popup__button-submit_disabled');
+  const buttonSubmit = popup.querySelector(validationConfig.submitButtonSelector);
+  buttonSubmit.classList.add(validationConfig.inactiveButtonClass);
 }
 
 // Кнопка закрытия popupZoomImage
 closedButton.addEventListener('click', function() {
   closePopup(popupZoomImage);
 });
+
+/*
+  Решил переделать данную функцию для уменьшения строк кода и для избавления от одного перебора массива.
+  1. Получаю массив всех input из переданного в параметр popup.
+  2. Перебираем полученный массив для получения каждого input отдельно.
+  3. Если элемент массива содержит нужный класс, то создаю переменную с ошибкой, через id input.
+  5. Удаляю активные классы с ошибками и очищаю текстовое содержание ошибки
+*/
 
 // Функция обнуления ошибок при повторном открытии popup
 function resetError(popup) {
-  const inputElements = Array.from(popup.querySelectorAll('.popup__input'));
-  const errorElements = Array.from(popup.querySelectorAll('.popup__error'));
-  // Удаляем подчеркивание ошибки
+  const inputElements = Array.from(popup.querySelectorAll(validationConfig.inputSelector));
+
   inputElements.forEach((inputElement) => {
-    if (inputElement.classList.contains('popup__input_type_error')) {
-      inputElement.classList.remove('popup__input_type_error');
-    }
-  });
-  // Удаляем активный класс ошибки и ее содержание
-  errorElements.forEach((errorElement) => {
-    if (errorElement.classList.contains('popup__error_visible')) {
-      errorElement.classList.remove('popup__error_visible');
+    if (inputElement.classList.contains(validationConfig.inputErrorClass)) {
+      const errorElement = popup.querySelector(`.${inputElement.id}-error`);
+      inputElement.classList.remove(validationConfig.inputErrorClass);
+      errorElement.classList.remove(validationConfig.errorClass);
       errorElement.textContent = '';
     }
   });
@@ -175,7 +172,7 @@ addElementButton.addEventListener('click', function() {
   openPopup(popupAddElement);
   disabledButtonSubmit(popupAddElement);
   resetError(popupAddElement);
-  resetInputsPopupAdd();
+  formAddCard.reset();
 });
 
 // Кнопка закрытия popupAddElement

@@ -142,12 +142,16 @@ function resetError(popup) {
   const errorElements = Array.from(popup.querySelectorAll('.popup__error'));
   // Удаляем подчеркивание ошибки
   inputElements.forEach((inputElement) => {
-    inputElement.classList.remove('popup__input_type_error');
+    if (inputElement.classList.contains('popup__input_type_error')) {
+      inputElement.classList.remove('popup__input_type_error');
+    }
   });
   // Удаляем активный класс ошибки и ее содержание
   errorElements.forEach((errorElement) => {
-    errorElement.classList.remove('popup__error_visible');
-    errorElement.textContent = '';
+    if (errorElement.classList.contains('popup__error_visible')) {
+      errorElement.classList.remove('popup__error_visible');
+      errorElement.textContent = '';
+    }
   });
 }
 
@@ -155,7 +159,7 @@ function resetError(popup) {
 profileEditButton.addEventListener('click', function() {
   openPopup(popupEdit);
   disabledButtonSubmit(popupEdit);
-  resetError(popupEdit)
+  resetError(popupEdit);
   receivingInputsPopupEdit();
 });
 

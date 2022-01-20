@@ -40,7 +40,6 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown',closePopupKeydownEsc); // Слушатель на закрытие по ESC
   document.addEventListener('click', closePopupClickOverlay); // Слушатель на закрытие по overlay
-
 }
 
 // функция закрытия popup
@@ -52,7 +51,7 @@ function closePopup(popup) {
 }
 
 // Функция формирования карточки
-function createCard (link, name) {
+function createCard(link, name) {
   const elementCard = elementTemplate.cloneNode(true);
   const elementImage = elementCard.querySelector('.element__image');
   elementImage.src = link;
@@ -62,7 +61,7 @@ function createCard (link, name) {
   // Открытие большой фотографии
   elementImage.addEventListener('click', function() {
     openBigImage(link, name);
-  })
+  });
 
   // Постановка или удаление лайка
   const likeElement = elementCard.querySelector('.element__like-button');

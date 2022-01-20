@@ -18,7 +18,7 @@ const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с 
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
-const formAddCard = popupAddElement.querySelector('.popup__form');
+const formAddCard = popupAddElement.querySelector('.popup__form'); // Форма popup добавления фотографии
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {

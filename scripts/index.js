@@ -122,20 +122,13 @@ closedButton.addEventListener('click', function() {
 function disabledButtonSubmit(popup) {
   const buttonSubmit = popup.querySelector(validationConfig.submitButtonSelector);
   buttonSubmit.classList.add(validationConfig.inactiveButtonClass);
+  buttonSubmit.disabled = true;
 }
 
 // Кнопка закрытия popupZoomImage
 closedButton.addEventListener('click', function() {
   closePopup(popupZoomImage);
 });
-
-/*
-  Решил переделать данную функцию для уменьшения строк кода и для избавления от одного перебора массива.
-  1. Получаю массив всех input из переданного в параметр popup.
-  2. Перебираем полученный массив для получения каждого input отдельно.
-  3. Если элемент массива содержит нужный класс, то создаю переменную с ошибкой, через id input.
-  5. Удаляю активные классы с ошибками и очищаю текстовое содержание ошибки
-*/
 
 // Функция обнуления ошибок при повторном открытии popup
 function resetError(popup) {

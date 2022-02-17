@@ -1,3 +1,6 @@
+import FormValidator from './validate.js';
+import Card from './cards.js';
+
 const popupEdit = document.querySelector('.popup_edit-profile'); //popup
 const profileEditButton = document.querySelector('.profile__edit-button'); // кнопка вызова popup
 const popupEditReset = document.querySelector('.popup__edit-reset-button'); // кнопка закрытия popup
@@ -13,12 +16,50 @@ const popupAddElementSubmit = document.querySelector('.popup__button-element-sub
 const popupAddTitleInput = document.querySelector('.popup__place-title'); // поле ввода названия фотографии
 const popupAddImageLink = document.querySelector('.popup__image-link'); // поле ввода ссылки на фотографию
 const elements = document.querySelector('.elements'); // Блок elements
-const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
-const zoomImage = document.querySelector('.popup__image'); // Большая фотография
-const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
+export const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
+export const zoomImage = document.querySelector('.popup__image'); // Большая фотография
+export const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
 const formAddCard = popupAddElement.querySelector('.popup__form'); // Форма popup добавления фотографии
 const formList = Array.from(document.querySelectorAll('.popup__form'));  // Массив всех форм на странице
+
+// Объект с классами для валидации
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+// Массив первых 6-ти карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
@@ -37,7 +78,7 @@ function closePopupClickOverlay(evt) {
 }
 
 // Функция открытия popup
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown',closePopupKeydownEsc); // Слушатель на закрытие по ESC
   document.addEventListener('click', closePopupClickOverlay); // Слушатель на закрытие по overlay

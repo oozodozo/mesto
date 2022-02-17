@@ -12,13 +12,13 @@ const popupAddElementReset = document.querySelector('.popup__reset-add-button');
 const popupAddElementSubmit = document.querySelector('.popup__button-element-submit'); // кнопка сохранения
 const popupAddTitleInput = document.querySelector('.popup__place-title'); // поле ввода названия фотографии
 const popupAddImageLink = document.querySelector('.popup__image-link'); // поле ввода ссылки на фотографию
-const elementTemplate = document.querySelector('#template-element').content; // Элемент template для карточек
 const elements = document.querySelector('.elements'); // Блок elements
 const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
 const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
 const formAddCard = popupAddElement.querySelector('.popup__form'); // Форма popup добавления фотографии
+const formList = Array.from(document.querySelectorAll('.popup__form'));  // Массив всех форм на странице
 
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
@@ -51,51 +51,14 @@ function closePopup(popup) {
   document.removeEventListener('click', closePopupClickOverlay);
 }
 
-// Функция формирования карточки
-function createCard(link, name) {
-  const elementCard = elementTemplate.cloneNode(true);
-  const elementImage = elementCard.querySelector('.element__image');
-  elementImage.src = link;
-  elementImage.alt = name;
-  elementCard.querySelector('.element__title').textContent = name;
-
-  // Открытие большой фотографии
-  elementImage.addEventListener('click', function() {
-    openBigImage(link, name);
-  });
-
-  // Постановка или удаление лайка
-  const likeElement = elementCard.querySelector('.element__like-button');
-  likeElement.addEventListener('click', function() {
-    likeElement.classList.toggle('element__like-button_active');
-  });
-
-  // Удаление карточки по нажатию на иконку
-  const deleteElement = elementCard.querySelector('.element__trash-button');
-  deleteElement.addEventListener('click', function() {
-    const deleteCard = deleteElement.closest('.element');
-    deleteCard.remove();
-  });
-
-  return elementCard;
-}
-
-// Функция открытия popup с большой фотографией
-function openBigImage(link, name) {
-  openPopup(popupZoomImage);
-  zoomImage.src = link;
-  zoomImage.alt = name;
-  imageFigcaption.textContent = name;
-}
-
-// Функция добавления карточки на страницу
-function insertElement(element) {
-  const elementCard = createCard(element.link, element.name);
-  elements.prepend(elementCard);
+// Функция добавления карточки на страницу через создание экземпляра класса
+const insertElement = (element) => {
+  const elementCard = new Card(element, '#template-element');
+  elements.prepend(elementCard.generateCard());
 }
 
 // Загрузка 6 карточек из массива
-initialCards.forEach(function (item) {
+initialCards.forEach((item) => {
   insertElement(item);
 });
 
@@ -124,11 +87,6 @@ function disabledButtonSubmit(popup) {
   buttonSubmit.classList.add(validationConfig.inactiveButtonClass);
   buttonSubmit.disabled = true;
 }
-
-// Кнопка закрытия popupZoomImage
-closedButton.addEventListener('click', function() {
-  closePopup(popupZoomImage);
-});
 
 // Функция обнуления ошибок при повторном открытии popup
 function resetError(popup) {
@@ -182,4 +140,13 @@ popupAddElementSubmit.addEventListener('click', function(evt) {
   }
   insertElement(cardData);
   closePopup(popupAddElement);
+});
+
+// Запуск валидации для каждой формы на странице
+formList.forEach((formElement) => {
+  formElement.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+  });
+  const validElement = new FormValidator(validationConfig, formElement);
+  validElement.enableValidation();
 });

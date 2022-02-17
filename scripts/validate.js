@@ -14,9 +14,7 @@ class FormValidator {
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
-
     this._formElement = formElement;
-
     this._inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = formElement.querySelector(this._submitButtonSelector);
   }
@@ -80,13 +78,3 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-
-const formList = Array.from(document.querySelectorAll('.popup__form'));
-
-formList.forEach((formElement) => {
-  formElement.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });
-  const validElement = new FormValidator(validationConfig, formElement);
-  validElement.enableValidation();
-  });

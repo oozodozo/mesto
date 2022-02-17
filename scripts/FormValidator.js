@@ -18,6 +18,14 @@ export default class FormValidator {
     errorElement.classList.add(this._errorClass);
   }
 
+  // Метод обнуления ошибок и деактивации кнопки
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    });
+  }
+
   //  Метод скрытия ошибок
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);

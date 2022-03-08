@@ -17,9 +17,11 @@ const popupAddTitleInput = document.querySelector('.popup__place-title'); // п�
 const popupAddImageLink = document.querySelector('.popup__image-link'); // поле ввода ссылки на фотографию
 const elements = document.querySelector('.elements'); // Блок elements
 export const popupZoomImage = document.querySelector('.popup_zoom-image'); // popup с большой фотографией
+
 export const zoomImage = document.querySelector('.popup__image'); // Большая фотография
 export const imageFigcaption = document.querySelector('.popup__figcaption'); // Подпись под фотографией
 const closedButton = popupZoomImage.querySelector('.popup__reset-button'); // Кнопка закрытия popupZoomImage
+
 const formAddCard = popupAddElement.querySelector('.popup__form'); // Форма popup добавления фотографии
 
 // Объект с классами для валидации

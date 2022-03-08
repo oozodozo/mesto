@@ -1,21 +1,18 @@
-import {openPopup, popupZoomImage, imageFigcaption, zoomImage} from "./index.js";
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor({data, cardClick}, templateSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._cardClick = cardClick;
     this._templateSelector = templateSelector;
   }
 
   // Метод получения разметки карточки
   _getTemplate() {
-    const cardElement = document
+    return document
       .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
-
-    return cardElement;
   }
 
   // Метод наполнения карточки
@@ -27,14 +24,6 @@ export default class Card {
     this._element.querySelector('.element__image').alt = this._name;
     this._element.querySelector('.element__title').textContent = this._name;
     return this._element;
-  }
-
-  // Метод открытия popup с большой фотографией
-  _openBigImage() {
-    openPopup(popupZoomImage);
-    zoomImage.src = this._link;
-    zoomImage.alt = this._name;
-    imageFigcaption.textContent = this._name;
   }
 
   // Метод постановки и удаления лайков
@@ -50,7 +39,10 @@ export default class Card {
   // Метод установки слушателей на карточку
   _setEventListeners() {
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._openBigImage();
+      this._cardClick({
+        link: this._link,
+        name: this._name
+      })
     })
 
     this._likeButton.addEventListener('click', () => {

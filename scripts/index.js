@@ -62,7 +62,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+// -------------
 // Функция закрытия popup по нажатию на ESC
 function closePopupKeydownEsc(evt) {
   if (evt.key === 'Escape') {
@@ -91,12 +91,11 @@ function closePopup(popup) {
   document.removeEventListener('keydown',closePopupKeydownEsc);
   popup.removeEventListener('click', closePopupClickOverlay);
 }
-
+// -----------------------
 // Функция создания карточки
 const createCard = (element) => {
   const elementCard = new Card(element, '#template-element');
-  const cardElement = elementCard.generateCard();
-  return cardElement;
+  return elementCard.generateCard();
 }
 
 // Функция добавления карточки на страницу в начало
@@ -122,7 +121,7 @@ function handlePopupEditForm(evt) {
   userJob.textContent = jobInput.value;
   closePopup(popupEdit);
 }
-
+//--------------------
 // Кнопка закрытия popupZoomImage
 closedButton.addEventListener('click', function() {
   closePopup(popupZoomImage);
@@ -154,7 +153,7 @@ addElementButton.addEventListener('click', function() {
 popupAddElementReset.addEventListener('click', function() {
   closePopup(popupAddElement);
 });
-
+//------------------------
 // Добавление карточки внутри popupAddElement
 popupAddElementSubmit.addEventListener('click', function(evt) {
   evt.preventDefault();

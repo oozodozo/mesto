@@ -1,4 +1,4 @@
-//import './index.css';
+import './pages/index.css';
 
 // Импорт необходимых переменных
 import {
@@ -16,15 +16,15 @@ import {
   containerSelector,
   popupAddElementSelector,
   popupEditSelector
-} from '../utils/constans.js';
+} from './utils/constans.js';
 
 // Импорт необходимых компонентов
-import FormValidator from '../components/FormValidator.js';
-import Card from '../components/Card.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import UserInfo from '../components/UserInfo.js';
-import Section from "../components/Section.js";
-import PopupWithForm from "../components/PopupWithForm.js";
+import FormValidator from './components/FormValidator.js';
+import Card from './components/Card.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import UserInfo from './components/UserInfo.js';
+import Section from "./components/Section.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 
 
 const profileValid = new FormValidator(validationConfig, userEditForm); // Экземпляр класса для формы редактирования профиля

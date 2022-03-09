@@ -1,8 +1,8 @@
 export default class Card {
-  constructor({data, cardClick}, templateSelector) {
+  constructor({data, handleCardClick}, templateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._cardClick = cardClick;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
@@ -39,7 +39,7 @@ export default class Card {
   // Метод установки слушателей на карточку
   _setEventListeners() {
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._cardClick({
+      this._handleCardClick({
         link: this._link,
         name: this._name
       })

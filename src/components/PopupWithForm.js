@@ -8,6 +8,7 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popupForm.querySelectorAll('.popup__input');
   }
 
+  // Сбор информации с input
   _getInputValues() {
     this._newValues = {};
     this._inputList.forEach((inputElement) => {
@@ -16,6 +17,7 @@ export default class PopupWithForm extends Popup {
     return this._newValues;
   }
 
+  // Установка слушателей
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', (evt) => {
@@ -25,6 +27,7 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+  // Закрытие popup с очисткой формы
   close() {
     super.close();
     this._popupForm.reset();

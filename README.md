@@ -1,5 +1,5 @@
 
-[![Логотип проекта](./src/images/logo.svg)](https://oozodozo.github.io/mesto/)
+![Логотип проекта](./src/images/logo.svg)
 
 ### Яндекс.Практикум
 
@@ -57,10 +57,6 @@ ___
 + Развить проект добавив больше интерактивности за счет JavaScript
 
 ---
-
-## Ссылка на сайт:
-
-[![Логотип проекта](./src/images/logo.svg)](https://oozodozo.github.io/mesto/)
 
 ---
 

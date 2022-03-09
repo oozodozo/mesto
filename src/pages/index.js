@@ -4,18 +4,18 @@ import './index.css';
 import {
   aboutInput,
   addElementButton,
+  containerSelector,
   formAddCard,
   initialCards,
   nameInput,
+  popupAddElementSelector,
+  popupEditSelector,
   popupZoomImageSelector,
   profileEditButton,
   userAboutSelector,
   userEditForm,
   userNameSelector,
-  validationConfig,
-  containerSelector,
-  popupAddElementSelector,
-  popupEditSelector
+  validationConfig
 } from '../utils/constans.js';
 
 // Импорт необходимых компонентов
@@ -34,35 +34,32 @@ const popupWithImage = new PopupWithImage(popupZoomImageSelector);
 
 // Функция отрисовки карточки
 const createCard = (data) => {
-  return new Card({
+  const cardElement = new Card({
     data: data,
     handleCardClick: () => {
       popupWithImage.open(data);
     }
   }, '#template-element');
+  return cardElement.generateCard();
 };
 
 // Создание карточек из массива initialCards
 const initialCardsList = new Section({
   data: initialCards,
   renderer: (element) => {
-    const card = createCard(element);
-    const cardElement = card.generateCard();
-    initialCardsList.addItem(cardElement);
+    initialCardsList.addItem(createCard(element));
   }
 }, containerSelector);
 
 // Создание новой карточки из формы добавления
 const popupAddCard = new PopupWithForm(popupAddElementSelector, (values) => {
-  const card = createCard(values);
-  const cardElement = card.generateCard();
-  initialCardsList.addItem(cardElement);
+  initialCardsList.addItem(createCard(values));
   addCardValid.resetValidation();
 });
 
 // Создание экземпляра класса popup с сохранением новых данных о пользователе в функции
-const popupEditProfile = new PopupWithForm(popupEditSelector, () => {
-  userInfo.setUserInfo(nameInput, aboutInput);
+const popupEditProfile = new PopupWithForm(popupEditSelector, (userData) => {
+  userInfo.setUserInfo(userData);
 });
 
 // Слушатель на кнопку открытия popup добавления фотографии
@@ -73,10 +70,10 @@ addElementButton.addEventListener('click', () => {
 
 // Слушатель на кнопку открытия popup редактирования профиля
 profileEditButton.addEventListener('click', () => {
-  const userData = userInfo.getUserInfo();
+  const {name, info} = userInfo.getUserInfo();
   profileValid.resetValidation();
-  nameInput.value = userData.name;
-  aboutInput.value = userData.info;
+  nameInput.value = name;
+  aboutInput.value = info;
   popupEditProfile.open();
 });
 

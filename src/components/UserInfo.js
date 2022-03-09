@@ -13,9 +13,8 @@ export default class UserInfo {
     return this._userData;
   }
 
-  // получение имени и описания пользователя из input
-  setUserInfo(inputUserName, inputUserAbout) {
-    this._userName.textContent = inputUserName.value;
-    this._userAbout.textContent = inputUserAbout.value;
+  setUserInfo(userData) {
+    this._userName.textContent = userData.nameUser;
+    this._userAbout.textContent = userData.aboutUser;
   }
 }

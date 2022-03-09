@@ -44,15 +44,15 @@ export default class FormValidator {
   }
 
   // Метод проверки валидности каждого поля input
-  _hasInvalidInput(inputList) {
-    return inputList.some(function (inputElement) {
+  _hasInvalidInput() {
+    return this._inputList.some(function (inputElement) {
       return !inputElement.validity.valid;
     });
   }
 
   // Метод блокировки кнопки submit
   _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {

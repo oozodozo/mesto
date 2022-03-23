@@ -5,6 +5,7 @@ const aboutInput = userEditForm.querySelector('.popup__user-about'); // input о
 const popupAddElement = document.querySelector('.popup_add-element'); // popup добавление карточки
 const addElementButton = document.querySelector('.profile__add-button'); // кнопка открытия popup с добавлением карточки
 const formAddCard = popupAddElement.querySelector('.popup__form'); // Форма popup добавления фотографии
+const avatar = document.querySelector('.profile__avatar'); // img аватара профиля
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -67,5 +68,6 @@ export {
   validationConfig,
   containerSelector,
   popupAddElementSelector,
-  popupEditSelector
+  popupEditSelector,
+  avatar
 }

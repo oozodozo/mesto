@@ -12,7 +12,10 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/Profile_avatar_image.png')%>" alt="Аватар">
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="<%=require('./images/Profile_avatar_image.png')%>" alt="Аватар">
+          <button type="button" class="profile__avatar-button"></button>
+        </div>
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button page__button"></button>
@@ -35,7 +38,7 @@
             <button type="submit" class="popup__button-submit">Сохранить</button>
           </fieldset>
         </form>
-        <button type="reset" class="popup__reset-button popup__edit-reset-button page__button"></button>
+        <button type="reset" class="popup__reset-button page__button"></button>
       </div>
     </div>
     <!-- popup добавления карточки -->
@@ -51,7 +54,7 @@
             <button type="submit" class="popup__button-submit popup__button-element-submit">Создать</button>
           </fieldset>
         </form>
-        <button type="reset" class="popup__reset-button popup__reset-add-button page__button"></button>
+        <button type="reset" class="popup__reset-button page__button"></button>
       </div>
     </div>
     <!-- popup с большой фотографией -->
@@ -61,6 +64,30 @@
           <img class="popup__image" src="#" alt="">
           <figcaption class="popup__figcaption"></figcaption>
         </figure>
+        <button type="reset" class="popup__reset-button page__button"></button>
+      </div>
+    </div>
+    <!-- popup подтверждения удаления -->
+    <div class="popup popup_delete-element">
+      <div class="popup__container">
+        <form class="popup__form" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" class="popup__button-submit">Да</button>
+        </form>
+        <button type="reset" class="popup__reset-button page__button"></button>
+      </div>
+    </div>
+    <!-- popup редактирования аватара -->
+    <div class="popup popup_edit-avatar">
+      <div class="popup__container">
+        <form class="popup__form" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <fieldset class="popup__fieldset">
+            <input name="avatarLink" type="url" id="avatar-link" class="popup__input popup__avatar-link" placeholder="Ссылка на картинку" pattern="[a-zA-Zа-яА-я\-\S]+$" required>
+            <span class="popup__error avatar-link-error"></span>
+            <button type="submit" class="popup__button-submit">Сохранить</button>
+          </fieldset>
+        </form>
         <button type="reset" class="popup__reset-button page__button"></button>
       </div>
     </div>
@@ -74,7 +101,10 @@
       <img class="element__image" src="#" alt="">
       <div class="element__description">
         <h2 class="element__title"></h2>
-        <button type="button" class="element__like-button"></button>
+        <div class="element__like-container">
+          <button type="button" class="element__like-button"></button>
+          <span class="element__like-counter">5</span>
+        </div>
       </div>
       <button type="button" class="element__trash-button page__button"></button>
     </article>

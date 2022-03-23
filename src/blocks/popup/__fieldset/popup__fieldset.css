@@ -9,4 +9,11 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  margin-top: 54px;
+}
+
+@media screen and (max-width: 917px) {
+  .popup__fieldset {
+    margin-top: 75px;
+  }
 }

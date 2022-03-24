@@ -56,7 +56,6 @@ Promise.all([api.getUserInfo(), api.getCards()])
     userId = userData._id;
     userInfo.setUserInfo(userData);
     initialCardsList.renderItems(cards);
-    console.log(userData);
   })
   .catch((err) => {
     console.log(err);

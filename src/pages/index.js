@@ -128,7 +128,6 @@ const popupAddCard = new PopupWithForm(popupAddElementSelector, (values) => {
   popupAddCard.showLoading(true);
   api.addUserCard(values)
     .then((data) => {
-      console.log(userId);
       initialCardsList.addItem(createCard(data));
     })
     .catch((err) => {
